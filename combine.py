@@ -62,7 +62,7 @@ def write_page(rows_in_page, page_number):
         page.paste(im, (0, y_offset))
         y_offset += ROW_HEIGHT + PADDING_Y
         im.close()
-    page.save(Path('pages', f'page-{page_number}.png'))
+    page.save(Path("pages", f"page-{page_number}.png"))
     page.close()
 
 
@@ -70,8 +70,6 @@ def make_pages(rows):
     rows_in_page = []
     current_page = 0
     for row in rows:
-        print(current_page)
-        print(len(rows_in_page))
         if len(rows_in_page) + 1 > ROWS_PER_PAGE:
             write_page(rows_in_page, current_page)
             rows_in_page = []
@@ -80,18 +78,6 @@ def make_pages(rows):
 
     if rows_in_page:
         write_page(rows_in_page, current_page)
-
-
-# def make_lines():
-#     this_line, start_next_line = make_image_row()
-#     new_im = Image.new("1", (2400, 64), color=1)
-#     x_offset = 0
-#     for image_path in this_line:
-#         im = Image.open(Path("codes", image_path))
-#         new_im.paste(im, (x_offset, 0))
-#         x_offset += im.size[0] + 20
-#         im.close()
-#     new_im.save(Path("lines", "test.png"))
 
 
 if __name__ == "__main__":
