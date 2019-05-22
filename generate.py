@@ -19,7 +19,7 @@ def generate_single_barcode(data):
             "showborder": False,
             "textyoffset": "2",
             "textfont": "Arial",
-            "inkspread": "0.2",
+            "inkspread": "0.4",
         },
     )
     image.convert("1").save(str(Path("codes", f"{data}.png".replace("/", "-"))))
