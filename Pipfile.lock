@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1d5d091496e696032fde22fb6c17a8edc98c87d9091f692be0570db93ad8dabc"
+            "sha256": "475d566c0d44c9a6cedb6d4d33d8f9368002ef666d8ec1275cabd40bdd7c70e9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -74,16 +74,7 @@
                 "sha256:de7aedc85918c2f887886442e50f52c1b93545606317956d65f342bd81cb4fc3",
                 "sha256:e6c0bbf8e277b74196e3140c35f9a1ae3eafd818f7f2d3a15819c49135d6c062"
             ],
-            "index": "pypi",
             "version": "==6.0.0"
-        },
-        "python-barcode": {
-            "hashes": [
-                "sha256:1a54b628bff1d6199594087c51d4d002c82dbbe640cfc930c7e2d3913f5d056b",
-                "sha256:a2f5c46d8db8a9113994e525c88105aca11c02c4c554c74aea4b38b702dc3c08"
-            ],
-            "index": "pypi",
-            "version": "==0.9.0"
         },
         "requests": {
             "hashes": [
@@ -98,6 +89,14 @@
                 "sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"
             ],
             "version": "==1.12.0"
+        },
+        "treepoem": {
+            "hashes": [
+                "sha256:751cea36a9f6fe222e18db011ab75a90fc2e75594db79aacef8e95e0d55f4e21",
+                "sha256:a8e50f01510f095c7d457f87e337834ae94207c36574fd73d73a7a18c2fdfcac"
+            ],
+            "index": "pypi",
+            "version": "==3.0.0"
         },
         "urllib3": {
             "hashes": [

@@ -1,18 +1,24 @@
 import os
 
-import barcode
+import treepoem
 from airtable import Airtable
-from barcode.writer import ImageWriter
 from pathlib import Path
 
 
 def generate_single_barcode(data):
     print(data)
-    CODE128 = barcode.get_barcode_class("code128")
-    # code = CODE128(data, writer=ImageWriter())
-    code = CODE128(data)
-    with Path("codes", f"{data}.svg".replace("/", "-")).open("wb") as f:
-        code.write(f)
+    image = treepoem.generate_barcode(
+        barcode_type="code128",
+        data=data,
+        options={
+            "height": "0.3",
+            "includetext": True,
+            "showborder": False,
+            "textyoffset": "2",
+            "textfont": "Arial"
+        },
+    )
+    image.convert("1").save(str(Path("codes", f"{data}.png")))
 
 
 def get_all_instrument_numbers():
@@ -24,7 +30,6 @@ def get_all_instrument_numbers():
             if not record["fields"].get("Number", False):
                 continue
             generate_single_barcode(record["fields"]["Number"].strip())
-            return
 
 
 if __name__ == "__main__":

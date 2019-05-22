@@ -6,9 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-python-barcode = "*"
-pillow = "*"
 airtable-python-wrapper = "*"
+treepoem = "*"
 
 [requires]
 python_version = "3.7"
