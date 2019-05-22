@@ -12,7 +12,7 @@ ROW_HEIGHT = 64
 
 
 def get_next_image():
-    for image in os.listdir("codes"):
+    for image in sorted(os.listdir("codes")):
         yield image
 
 

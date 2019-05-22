@@ -38,5 +38,33 @@ def get_all_instrument_numbers():
         p.map(generate_single_barcode, numbers)
 
 
+def get_new_instrument_numbers():
+    numbers = []
+    for prefix in [
+        1,
+        2,
+        3,
+        4,
+        8,
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "V13",
+        "V14",
+        "V15",
+        "V16",
+        "V17",
+    ]:
+        numbers.extend(generate_twenty_more(prefix))
+    with Pool(16) as p:
+        p.map(generate_single_barcode, numbers)
+
+
+def generate_twenty_more(prefix):
+    return [f"{prefix}-{i}" for i in range(501, 521)]
+
+
 if __name__ == "__main__":
-    get_all_instrument_numbers()
+    get_new_instrument_numbers()
+    # get_all_instrument_numbers()
