@@ -22,6 +22,10 @@ def generate_single_barcode(data):
             "inkspread": "0.4",
         },
     )
+    width = 300
+    percent = float(width / image.width)
+    height = int(image.height * percent)
+    image = image.resize((width, height))
     image.convert("1").save(str(Path("codes", f"{data}.png".replace("/", "-"))))
 
 
@@ -63,8 +67,9 @@ def get_new_instrument_numbers():
 
 def generate_twenty_more(prefix):
     return [f"{prefix}-{i}" for i in range(501, 521)]
+    # return [f"{prefix}-{i}" for i in range(501, 502)]
 
 
 if __name__ == "__main__":
-    get_new_instrument_numbers()
-    # get_all_instrument_numbers()
+    # get_new_instrument_numbers()
+    get_all_instrument_numbers()
