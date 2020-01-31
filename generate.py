@@ -1,9 +1,25 @@
 import os
+import shutil
 
 import treepoem
-from airtable import Airtable
 from pathlib import Path
 from multiprocessing import Pool
+import click
+from datetime import datetime
+
+
+@click.command()
+@click.argument("prefix")
+@click.argument("first", type=int)
+@click.argument("last", type=int)
+@click.option("--rm", is_flag=True)
+def generate(prefix, first, last, rm):
+    if rm:
+        shutil.rmtree("codes")
+        os.mkdir("codes")
+    numbers = [f"{prefix}-{num}" for num in range(first, last + 1)]
+    with Pool(4) as p:
+        p.map(generate_single_barcode, numbers)
 
 
 def generate_single_barcode(data):
@@ -29,47 +45,5 @@ def generate_single_barcode(data):
     image.convert("1").save(str(Path("codes", f"{data}.png".replace("/", "-"))))
 
 
-def get_all_instrument_numbers():
-    at = Airtable(
-        base_key=os.environ.get("AIRTABLE_BASE_KEY"), table_name="Instruments"
-    )
-    numbers = [
-        item["fields"]["Number"]
-        for item in at.get_all()
-        if item["fields"].get("Number", False)
-    ]
-    with Pool(16) as p:
-        p.map(generate_single_barcode, numbers)
-
-
-def get_new_instrument_numbers():
-    numbers = []
-    for prefix in [
-        1,
-        2,
-        3,
-        4,
-        8,
-        "C1",
-        "C2",
-        "C3",
-        "C4",
-        "V13",
-        "V14",
-        "V15",
-        "V16",
-        "V17",
-    ]:
-        numbers.extend(generate_twenty_more(prefix))
-    with Pool(16) as p:
-        p.map(generate_single_barcode, numbers)
-
-
-def generate_twenty_more(prefix):
-    return [f"{prefix}-{i}" for i in range(501, 521)]
-    # return [f"{prefix}-{i}" for i in range(501, 502)]
-
-
 if __name__ == "__main__":
-    # get_new_instrument_numbers()
-    get_all_instrument_numbers()
+    generate()

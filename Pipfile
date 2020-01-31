@@ -11,6 +11,7 @@ airtable-python-wrapper = "*"
 treepoem = "*"
 pillow = "*"
 img2pdf = "*"
+click = "*"
 
 [requires]
 python_version = "3.7"

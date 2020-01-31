@@ -6,7 +6,6 @@ from PIL import Image
 
 PIXELS_PER_IN = 300
 
-
 def in_to_px(inches):
     return int(inches * PIXELS_PER_IN)
 
@@ -16,9 +15,6 @@ PAGE_HEIGHT_IN = 11
 PAGE_WIDTH_PX = in_to_px(PAGE_WIDTH_IN)
 PAGE_HEIGHT_PX = in_to_px(PAGE_HEIGHT_IN)
 
-# PADDING_X = 20
-# PADDING_Y = 11
-# ROW_HEIGHT = 64
 LABEL_WIDTH_IN = 2
 LABEL_HEIGHT_IN = 3
 LABEL_WIDTH_PX = in_to_px(LABEL_WIDTH_IN)
@@ -99,10 +95,6 @@ def make_label(filename):
     property_of_tmm = Image.open("./property-of-tmm-image.png")
     file_path = Path(filename)
     basename = file_path.name
-    # percent = LABEL_WIDTH * 0.8 / property_of_tmm.width
-    # new_height = int(property_of_tmm.height * percent)
-    # property_of_tmm = property_of_tmm.resize((LABEL_WIDTH, new_height))
-    # property_x_offset = (LABEL_WIDTH - property_of_tmm.width) // 2
     code = Image.open(file_path)
     y_offset = property_of_tmm.height + 15
     x_offset = int((new_im.width - code.width) / 2)
@@ -112,6 +104,4 @@ def make_label(filename):
 
 
 if __name__ == "__main__":
-    # for image in get_next_image():
-    #     make_label(image)
     make_pages(make_image_rows())
